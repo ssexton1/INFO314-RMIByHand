@@ -15,7 +15,7 @@ public class Server {
                 Runnable request = () -> {
                     try {
                         handleRequest(currSocket);
-                    } catch (IOException ex) {
+                    } catch (Exception ex) {
                         ex.printStackTrace();
                     }
                 };
@@ -27,7 +27,7 @@ public class Server {
         }
     }
 
-    private static void handleRequest(Socket socket) throws IOException{
+    private static void handleRequest(Socket socket) throws Exception {
         ObjectInputStream in = new ObjectInputStream(socket.getInputStream());
         RemoteMethod remote_method = (RemoteMethod) in.readObject();
         ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
@@ -56,7 +56,7 @@ public class Server {
         
     
 
-    // Do not modify any code below tihs line
+    // Do not modify any code below this line
     // --------------------------------------
     public static String echo(String message) { 
         return "You said " + message + "!";
